@@ -30,3 +30,44 @@ There are functions to do that: `h` for host, `to` for to, `n` for network, `s` 
 | `ntohl()` | network to host long  |
 
 
+### Structs
+##### `struct addrinfo`
+```C
+struct addrinfo {
+	int    ai_flags;     // AI_PASSIVE, AI_CANONNAME, etc.
+	int    ai_family;    // AF_INET, AF_INET6, AF_UNSPEC
+	int    ai_socktype;  // SOCK_STREAM, SOCK_DGRAM
+	int    ai_protocol;  // use 0 for 'any'
+	size_t ai_addrlen;   // size of ai_addr in bytes
+	struct sockaddr *ai_addr; // struct sockaddr_in or sockaddr_in6
+	char   *ai_canonname; // full canonical host name
+	
+	struct addrinfo *ai_next; // next node of linked list
+	
+};
+```
+
+
+
+##### `struct sockaddr` and parallels
+```C
+struct sockaddr {
+	unsigned short sa_family; // AF_INET, AF_INET6
+	char           sa_data;   // protocol address, 14 bytes
+};
+```
+
+```C
+// IPv4
+
+struct sockaddr_in {
+	short int sin_family;  // AF_INET, AF_INET6
+	unsigned short int sin_port; // Port number
+	struct in_addr sin_addr; // IP address
+	unsigned char sin_zero[8]; // padding to get the same size as sockaddr
+};
+
+struct in_addr {
+	uint32_t s_addr; // 32-bit (4 byte) address
+}
+```
