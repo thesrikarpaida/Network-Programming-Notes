@@ -71,3 +71,24 @@ struct in_addr {
 	uint32_t s_addr; // 32-bit (4 byte) address
 }
 ```
+
+###### IP Struct conversions
+```C
+struct sockaddr_in sa;
+
+// Convert IPv4 address string format to struct sin_addr format
+inet_pton(AF_INET, "1.2.3.4", &(sa.sin_addr)); 
+
+/* ---------------------- */
+
+char ip4[INET_ADDRSTRLEN]; // 
+struct sockaddr_in sa;  // assume this is filled with some data
+
+// Convert IPv4 address struct sin_addr format to string format
+inet_ntop(AF_INET, sa.sin_addr, ip4, INET_ADDRSTRLEN);
+
+```
+`pton()` means presentation (or printable) to network.
+Similarly, `ntop()` means network to presentation.
+
+
