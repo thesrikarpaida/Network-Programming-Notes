@@ -14,11 +14,9 @@ Stream sockets (TCP) - `SOCK_STREAM`
 Datagram Sockets (UDP) - `SOCK_DGRAM`
 
 ### Byte Order Conversion
-Byte order is the order in which the sequential bytes are stored in a hex number. There are 2 types of byte orders: Little Endian and Big Endian. Consider a 4 byte number, `0xdeadb33f`. In Big Endian, it is stored as the four sequential bytes in this order, `de`, `ad`, `b3`, `3f`. In Little Endian, it is stored in the opposite order, `3f`, `b3`, `ad`, `de`, i.e., the little end is stored first. 
-
+Byte order is the order in which the sequential bytes are stored in a hex number. There are 2 types of byte orders: Little Endian and Big Endian. Consider a 4 byte number, `0xdeadb33f`. In Big Endian, it is stored as the four sequential bytes in this order, `de`, `ad`, `b3`, `3f`. In Little Endian, it is stored in the opposite order, `3f`, `b3`, `ad`, `de`, i.e., the little end is stored first. <br>
 The Network Byte order is always Big Endian, i.e., the network transmissions always happen with data stored in that order.
-The host byte order in most systems is Little Endian.
-
+The host byte order in most systems is Little Endian.<br>
 When doing network data transmission, we must convert the data we input into network byte order from host byte order. We can convert 4 bytes (or short), and 8 bytes (or long).
 There are functions to do that: `h` for host, `to` for to, `n` for network, `s` for short and `l` for long.
 
@@ -31,7 +29,7 @@ There are functions to do that: `h` for host, `to` for to, `n` for network, `s` 
 
 
 ### Structs
-##### `struct addrinfo`
+#### `struct addrinfo`
 ```C
 struct addrinfo {
 	int    ai_flags;     // AI_PASSIVE, AI_CANONNAME, etc.
@@ -49,7 +47,7 @@ struct addrinfo {
 
 
 
-##### `struct sockaddr` and parallels
+#### `struct sockaddr` and parallels
 ```C
 struct sockaddr {
 	unsigned short sa_family; // AF_INET, AF_INET6
@@ -72,7 +70,7 @@ struct in_addr {
 }
 ```
 
-###### IP Struct conversions
+##### IP Struct conversions
 ```C
 struct sockaddr_in sa;
 
