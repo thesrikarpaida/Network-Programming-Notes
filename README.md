@@ -88,7 +88,29 @@ struct sockaddr_in sa;  // assume this is filled with some data
 inet_ntop(AF_INET, sa.sin_addr, ip4, INET_ADDRSTRLEN);
 
 ```
-`pton()` means presentation (or printable) to network.
+`pton()` means presentation (or printable) to network.<br>
 Similarly, `ntop()` means network to presentation.
 
 
+### System Calls
+`getaddrinfo()` - _/* TODO */_
+
+#### `socket(int domain, int type, int protocol)` 
+Gives the file descriptor for a socket connection. 
+`domain` - IPv4 or IPv6 => `AF_INET` or `AF_INET6`
+`type` - TCP or UDP => `SOCK_STREAM` or `SOCK_DGRAM`
+`protocol` - it is set to 0 to choose the proper protocol for the given type
+
+It is said to use `PF_INET` instead of `AF_INET` (protocol family instead of address family) when calling `socket().
+
+#### `bind(int sockfd, struct sockaddr *my_addr, int addrlen)`
+Associates the socket to a port in the local machine. This is usually called when the socket connection is being made on the server side. On the client's side, we use `connect()` and that is a later discussion. After `bind()`, `listen()` is called for incoming connections on a specific port.
+`sockfd` - the socket file descriptor returned by `socket()`.
+`my_addr` - a pointer to struct sockaddr that has info about the port and IP address.
+`addrlen` - length of address in bytes
+
+#### `connect(int sockfd, struct sockaddr *serv_addr, int addrlen)`
+Connect is used when a client application is trying to connect to a remote server.
+`sockfd` - the socket file descriptor returned from `socket()`
+`serv_addr` - a pointer to struct sockaddr that has info about the destination server (port and IP)
+`addrlen` - length of address in bytes
