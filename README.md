@@ -112,3 +112,16 @@ Connect is used when a client application is trying to connect to a remote serve
 `sockfd` - the socket file descriptor returned from `socket()`
 `serv_addr` - a pointer to struct sockaddr that has info about the destination server (port and IP)
 `addrlen` - length of address in bytes
+
+#### `listen(int sockfd, int backlog)`
+Listen to incoming connections on the server.
+`sockfd` - the socket file descriptor returned from `socket()`
+`backlog` - number of connections allowed on the incoming queue. Incoming connections wait in this queue until they are `accept()`ed by the server
+
+#### `accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen)`
+Accept the incoming connection in the queue on the port the server is `listen()`ing on.
+This function returns another file descriptor that is ready to `send()` and `recv()` data for this particular connection, while the `socket()` file descriptor is still listening for more new connections.
+`sockfd` - the socket file descriptor returned from `socket()`
+`addr` - pointer to a local struct sockadd_storage. It has info about incoming connection
+`addrlen` - sizeof(struct sockaddr_storage)
+
