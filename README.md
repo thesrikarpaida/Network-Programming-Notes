@@ -125,3 +125,15 @@ This function returns another file descriptor that is ready to `send()` and `rec
 `addr` - pointer to a local struct sockadd_storage. It has info about incoming connection
 `addrlen` - sizeof(struct sockaddr_storage)
 
+#### `send(int sockfd, const void *msg, int len, int flags)`
+`sockfd` - the socket file descriptor returned from `socket()`
+`msg` - pointer to data you want to send
+`len` - length of that data
+`flags` - set to 0
+
+#### `recv(int sockfd, void *buf, int len, int flags)`
+`sockfd` - the socket file descriptor returned from `socket()`
+`buf` - buffer to read information into
+`len` - maximum length of the buffer
+`flags` - set to 0
+
